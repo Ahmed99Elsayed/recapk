@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prefirebase/screens/annon/annon_screen.dart';
 import 'package:prefirebase/screens/authenticate/register.dart';
+import 'package:prefirebase/screens/wrapper.dart';
 //import 'package:prefirebase/screens/authenticate/welcome.dart';
 import 'signin.dart';
 
@@ -39,9 +40,9 @@ class _AuthenticateState extends State<Authenticate> {
     } else {
       //return Welcome(
       return AnnonScreen(
-        toggleView: toggleView,
-        toggleWelcome: toggleWelcome,
-        showSignIn: showSignIn,
+        // toggleView: toggleView,
+        // toggleWelcome: toggleWelcome,
+        // showSignIn: showSignIn,
       ); // here we pass function toggle to Register pass as parameter to toggle it into button
     }
   }
