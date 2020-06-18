@@ -40,38 +40,56 @@ class _AnnonScreenState extends State<AnnonScreen> {
             padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
             child: Container(
               width: 300,
-              color: Colors.amber,
+              // color: Colors.amber,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text('Recapk for '),
-                        Container(
-                          width: 150,
-                          height: 30,
-                          child: TextField(
-                            onTap: (){},
-                            decoration: InputDecoration(
-                                hintText: '. . . .',
+                    Container(
+                      height: 70,
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Recapk for ',
+                              style: TextStyle(
+                                color: Color(0xff0E0E0E),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              )),
+                          Container(
+                            width: 180,
+                            height: 70,
+                            child: TextField(
+                              onTap: () {},
+                              style: TextStyle(
+                                color: Color.fromRGBO(45, 117, 226, 0.53),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 24,
+                              ),
+                              decoration: InputDecoration(
+                                hintText: '. . . . insert here',
+                                hintStyle: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
                                 fillColor: Colors.transparent,
                                 filled: true,
-                                // enabledBorder: OutlineInputBorder(
-                                //   borderRadius: BorderRadius.circular(10),
-                                //   borderSide: BorderSide(
-                                //     // color: Color.fromRGBO(45, 117, 226, 0.53),
-                                //     color: Colors.white,
-                                //   ),
-                                // ),
-                                
-                                // focusedBorder: OutlineInputBorder(
-                                //   borderRadius: BorderRadius.circular(10),
-                                //   borderSide: BorderSide(
-                                //     color: Colors.white,
-                                //     // color: Color.fromRGBO(45, 117, 226, 0.53),
-                                //   ),
-                                // ),
-                                
+                                enabledBorder: OutlineInputBorder(
+                                  // borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    // color: Color.fromRGBO(45, 117, 226, 0.53),
+                                    color: Colors.transparent,
+                                  ),
+                                ),
+
+                                focusedBorder: OutlineInputBorder(
+                                  // borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    // color: Color.fromRGBO(45, 117, 226, 0.53),
+                                  ),
+                                ),
+
                                 // prefixIcon: Icon(
                                 //   Icons.search,
                                 //   color: Color.fromRGBO(45, 117, 226, 1),
@@ -85,10 +103,45 @@ class _AnnonScreenState extends State<AnnonScreen> {
                                 //   color: Color.fromRGBO(45, 117, 226, 1),
                                 // ),
                               ),
-                          ),
-                        )
-                      ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
+                    Center(
+                      child: Container(
+                        height: 180,
+                        width: 200,
+                        // color: Colors.black,
+                        child: Image(image: AssetImage('images/boy.png')),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top:10),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          // color: Colors.blueAccent,
+                          child: Center(
+                            child: Text('Let\'s go' , style: TextStyle(
+                              fontSize: 12,color: Colors.white
+                            ),),
+                          ),
+                          width: 100,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            border: Border.all(
+                              color: Colors.blueAccent,
+                              width: 0.5,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(6.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
                   ]),
             ),
           ),
@@ -222,7 +275,7 @@ class _AnnonScreenState extends State<AnnonScreen> {
                   children: <Widget>[
                     Center(
                       child: Text(
-                        're' + 'C' + 'apK',
+                        'recapk',
                         style: ConstFonts.titleFont
                             .copyWith(color: Color(0xff0E0E0E)),
                       ),
@@ -264,7 +317,7 @@ class _AnnonScreenState extends State<AnnonScreen> {
                               ),
                               prefixIcon: Icon(
                                 Icons.search,
-                                color: Color.fromRGBO(45, 117, 226, 1),
+                                // color: Color.fromRGBO(45, 117, 226, 1),
 
                                 /// TODO: hide the icon when start typing
                               ),
