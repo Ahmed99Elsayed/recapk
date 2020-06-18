@@ -22,6 +22,152 @@ class AnnonScreen extends StatefulWidget {
 }
 
 class _AnnonScreenState extends State<AnnonScreen> {
+  Widget buildBottomSheetAdd(BuildContext context) {
+    return Container(
+      color: Color(0xff757575),
+      child: Container(
+        width: 500,
+        height: 500,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(22.0),
+            topRight: Radius.circular(22.0),
+          ),
+        ),
+        child: Stack(children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
+            child: Container(
+              width: 300,
+              color: Colors.amber,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text('Recapk for '),
+                        Container(
+                          width: 150,
+                          height: 30,
+                          child: TextField(
+                            onTap: (){},
+                            decoration: InputDecoration(
+                                hintText: '. . . .',
+                                fillColor: Colors.transparent,
+                                filled: true,
+                                // enabledBorder: OutlineInputBorder(
+                                //   borderRadius: BorderRadius.circular(10),
+                                //   borderSide: BorderSide(
+                                //     // color: Color.fromRGBO(45, 117, 226, 0.53),
+                                //     color: Colors.white,
+                                //   ),
+                                // ),
+                                
+                                // focusedBorder: OutlineInputBorder(
+                                //   borderRadius: BorderRadius.circular(10),
+                                //   borderSide: BorderSide(
+                                //     color: Colors.white,
+                                //     // color: Color.fromRGBO(45, 117, 226, 0.53),
+                                //   ),
+                                // ),
+                                
+                                // prefixIcon: Icon(
+                                //   Icons.search,
+                                //   color: Color.fromRGBO(45, 117, 226, 1),
+
+                                //   /// TODO: hide the icon when start typing
+                                // ),
+
+                                /// [delete the settign ICON .. for Version3]
+                                // suffixIcon: Icon(
+                                //   Icons.settings_input_component,
+                                //   color: Color.fromRGBO(45, 117, 226, 1),
+                                // ),
+                              ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ]),
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget buildBottomSheetProfile(BuildContext context) {
+    return Container(
+      color: Color(0xff757575),
+      child: Container(
+        width: 500,
+        height: 500,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(22.0),
+            topRight: Radius.circular(22.0),
+          ),
+        ),
+        child: Stack(children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
+            child: Container(
+              width: 300,
+              color: Colors.amber,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    child: Icon(Icons.settings),
+                    onTap: () {},
+
+                    ///TODO: sgin out
+                  ),
+                  Align(
+                    child: Container(
+                        height: 125,
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.green,
+                              radius: 50,
+                            ),
+                            Expanded(child: SizedBox()),
+                            Text('Ahmed Elsayed'), // from Firebase Auth
+                          ],
+                        )),
+                    alignment: Alignment.center,
+                  ),
+                  Divider(),
+                  Text('Recapks :'),
+                  Align(
+                    alignment: Alignment(-0.3, 0),
+                    child: Container(
+                      color: Colors.white,
+                      width: 100,
+                      height: 100,
+                      child: ListView(
+                        children: [
+                          Text('recap1'),
+                          Text('recap2'),
+                          Text('recap3'),
+                          Text('recap4'),
+                          Text('recap5'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+
   TextEditingController searchBox = TextEditingController();
 
   var queryResultSet = [];
@@ -64,6 +210,7 @@ class _AnnonScreenState extends State<AnnonScreen> {
         height: MediaQuery.of(context).size.height,
         allowFontScaling: true);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: ConstColors.backgroundColor,
       body: SafeArea(
         child: Stack(
@@ -75,15 +222,15 @@ class _AnnonScreenState extends State<AnnonScreen> {
                   children: <Widget>[
                     Center(
                       child: Text(
-                        'reCapK',
+                        're' + 'C' + 'apK',
                         style: ConstFonts.titleFont
                             .copyWith(color: Color(0xff0E0E0E)),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(right:20,left:20),
+                      margin: EdgeInsets.only(right: 20, left: 20),
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 50, bottom: 20),
+                        padding: const EdgeInsets.only(top: 30, bottom: 20),
                         child: Container(
                           decoration: BoxDecoration(boxShadow: [
                             BoxShadow(
@@ -139,7 +286,8 @@ class _AnnonScreenState extends State<AnnonScreen> {
                     ///TODO: delete top padding to be 10 or 5
 
                     GridView.count(
-                        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                        padding: EdgeInsets.only(
+                            left: 10.0, right: 10.0, bottom: 100),
                         crossAxisCount: 2,
                         crossAxisSpacing: 4.0,
                         mainAxisSpacing: 4.0,
@@ -169,26 +317,67 @@ class _AnnonScreenState extends State<AnnonScreen> {
             ),
 
             /// [ new bottom bar]
+            Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Container(
+                height: (70),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(22.0),
+                      topRight: Radius.circular(22.0),
+                    ),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 4),
+                        blurRadius: 12,
+                        color: Color(0xff000000).withOpacity(.25),
+                      ),
+                    ]),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context, builder: buildBottomSheetProfile);
+                      },
+                      child: Icon(Icons.person_outline),
+                    ),
+                    Icon(Icons.check_box_outline_blank),
+                    GestureDetector(
+                      child: Icon(Icons.add_box),
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context, builder: buildBottomSheetAdd);
+                      },
+                    )
+                  ],
+                ),
+              ),
+            )
 
             // Align(
             //   alignment: Alignment.bottomCenter,
             //   child: Container(
             //     height: (85),
             //     width: double.infinity,
-            //     decoration: BoxDecoration(boxShadow: [
-            //       BoxShadow(
-            //         offset: Offset(0, 4),
-            //         blurRadius: 10,
-            //         color: ConstColors.boxShadowColor,
-            //       ),
+            // decoration: BoxDecoration(boxShadow: [
+            //   BoxShadow(
+            //     offset: Offset(0, 4),
+            //     blurRadius: 10,
+            //     color: ConstColors.boxShadowColor,
+            //   ),
             //     ]),
             //     child: Material(
             //       type: MaterialType.canvas,
             //       color: Colors.white,
-            //       borderRadius: BorderRadius.only(
-            //         topLeft: Radius.circular(10.0),
-            //         topRight: Radius.circular(10.0),
-            //       ),
+            // borderRadius: BorderRadius.only(
+            //   topLeft: Radius.circular(10.0),
+            //   topRight: Radius.circular(10.0),
+            // ),
             //       child: Stack(
             //         children: <Widget>[
             //           Align(
