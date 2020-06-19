@@ -7,6 +7,7 @@ import 'package:prefirebase/models/const.dart';
 import 'package:prefirebase/models/user.dart';
 import 'package:prefirebase/screens/add_recap_settings/add_recap_screen.dart';
 import 'package:prefirebase/screens/annon/search_services.dart';
+import 'package:prefirebase/screens/book_name/book_name_screen.dart';
 import 'package:prefirebase/screens/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -52,14 +53,17 @@ class _AnnonScreenState extends State<AnnonScreen> {
                         children: [
                           Text('Recapk for ',
                               style: TextStyle(
-                                color: Color(0xff0E0E0E),
+
+                                // color: Color(0xff0E0E0E),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                               )),
                           Container(
                             width: 180,
                             height: 70,
+                            
                             child: TextField(
+                              
                               onTap: () {},
                               style: TextStyle(
                                 color: Color.fromRGBO(45, 117, 226, 0.53),
@@ -117,26 +121,40 @@ class _AnnonScreenState extends State<AnnonScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top:10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Align(
                         alignment: Alignment.bottomRight,
-                        child: Container(
-                          // color: Colors.blueAccent,
-                          child: Center(
-                            child: Text('Let\'s go' , style: TextStyle(
-                              fontSize: 12,color: Colors.white
-                            ),),
-                          ),
-                          width: 100,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: Colors.blueAccent,
-                            border: Border.all(
-                              color: Colors.blueAccent,
-                              width: 0.5,
+                        child: InkWell(
+                          splashColor: Colors.grey[600],
+                          highlightColor: Colors.blueAccent,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => BookName(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            // color: Colors.blueAccent,
+                            child: Center(
+                              child: Text(
+                                'Let\'s go',
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
                             ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(6.0),
+                            width: 100,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              border: Border.all(
+                                color: Colors.blueAccent,
+                                width: 0.5,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(6.0),
+                              ),
                             ),
                           ),
                         ),
@@ -390,7 +408,7 @@ class _AnnonScreenState extends State<AnnonScreen> {
                     ]),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () {

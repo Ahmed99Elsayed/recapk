@@ -19,17 +19,17 @@ class _BookNameState extends State<BookName> {
           height: height,
           decoration: BoxDecoration(
             color: ConstColors.backgroundColor,
-            boxShadow: [
-              BoxShadow(
-                offset: Offset(1, 1),
-                blurRadius: 10,
-                spreadRadius: 1,
-                color: ConstColors.boxShadowColor,
-              ),
-            ],
+            // boxShadow: [
+            //   // BoxShadow(
+            //   //   offset: Offset(1, 1),
+            //   //   blurRadius: 10,
+            //   //   spreadRadius: 1,
+            //   //   color: ConstColors.boxShadowColor,
+            //   // ),
+            // ],
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0),
+              topLeft: Radius.circular(12.0),
+              topRight: Radius.circular(12.0),
             ),
           ),
           child: SingleChildScrollView(
