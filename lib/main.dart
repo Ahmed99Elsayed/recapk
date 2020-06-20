@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prefirebase/screens/wrapper.dart';
+import 'package:prefirebase/screens/annon/annon_screen.dart';
 import 'package:prefirebase/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:prefirebase/models/user.dart';
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       value: AuthService().user, // listen on stream
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Wrapper(),
+        home: AnnonScreen(),
       ),
     );
   }

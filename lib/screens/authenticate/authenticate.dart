@@ -13,6 +13,9 @@ class Authenticate extends StatefulWidget {
 class _AuthenticateState extends State<Authenticate> {
   bool showSignIn = true;
   bool showWelcome = true;
+
+
+  
   void toggleView() {
     setState(() {
       showSignIn = !showSignIn;
@@ -40,9 +43,9 @@ class _AuthenticateState extends State<Authenticate> {
     } else {
       //return Welcome(
       return AnnonScreen(
-        // toggleView: toggleView,
-        // toggleWelcome: toggleWelcome,
-        // showSignIn: showSignIn,
+        toggleView: toggleView,
+        toggleWelcome: toggleWelcome,
+        showSignIn: showSignIn,
       ); // here we pass function toggle to Register pass as parameter to toggle it into button
     }
   }
