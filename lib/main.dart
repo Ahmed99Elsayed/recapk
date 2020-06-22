@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:prefirebase/models/user.dart';
 
 void main() => runApp(MyApp());
-// Testttstst
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user, // listen on stream
       child: MaterialApp(
+        title: 'reCAPk',
         debugShowCheckedModeBanner: false,
         home: AnnonScreen(),
       ),

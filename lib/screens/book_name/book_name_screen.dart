@@ -4,6 +4,8 @@ import 'package:prefirebase/screens/annon/annon_screen.dart';
 import 'package:prefirebase/services/add_recap.dart';
 
 class BookName extends StatefulWidget {
+  String recapName;
+  BookName({this.recapName});
   @override
   _BookNameState createState() => _BookNameState();
 }
@@ -100,9 +102,11 @@ class _BookNameState extends State<BookName> {
                     ),
                     FlatButton(
                       onPressed: () {
+//                        print(widget.recapName.substring(0, 1).toUpperCase());
                         addData({
-                          'Book': 'Neww bokk',
-                          'bookKey':'N',
+                          'Book': widget.recapName,
+                          'bookKey':
+                              widget.recapName.substring(0, 1).toUpperCase(),
                           'recap': _textEditingController.text.split('\n'),
                         });
                         Navigator.of(context).push(

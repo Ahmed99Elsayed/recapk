@@ -24,6 +24,7 @@ class AnnonScreen extends StatefulWidget {
 }
 
 class _AnnonScreenState extends State<AnnonScreen> {
+  String recapName = '';
   Widget buildBottomSheetAdd(BuildContext context) {
     return Container(
       color: Color(0xff757575),
@@ -63,8 +64,9 @@ class _AnnonScreenState extends State<AnnonScreen> {
                             width: 180,
                             height: 70,
                             child: TextField(
-                              onSubmitted: (value) {
-                                ///[هنا هيوديها ك اسم للكتاب]
+                              onChanged: (value) {
+                                recapName = value;
+                                print(value);
                               },
                               style: TextStyle(
                                 color: Color.fromRGBO(45, 117, 226, 0.53),
@@ -132,7 +134,9 @@ class _AnnonScreenState extends State<AnnonScreen> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return BookName();
+                                  return BookName(
+                                    recapName: recapName,
+                                  );
                                 },
                               ),
                             );
@@ -253,25 +257,26 @@ class _AnnonScreenState extends State<AnnonScreen> {
 
                             Container(
                               height: 50,
-                              
-                              
+
                               // color: Colors.amber,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                Text(
-                                  usert.displayName.toString(),
-                                  style: TextStyle(
-                                      color: Color(0xff0E0E0E), fontSize: 18),
-                                ),
-                                Text(usert.email, style: TextStyle(
-                                  fontSize: 8,
-                                  
-                                    color: Colors.grey[400]
-                                ),
-                                
-                                ),
-                              ]),
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Text(
+                                      usert.displayName.toString(),
+                                      style: TextStyle(
+                                          color: Color(0xff0E0E0E),
+                                          fontSize: 18),
+                                    ),
+                                    Text(
+                                      usert.email,
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey[400]),
+                                    ),
+                                  ]),
                             ), // from Firebase Auth
                           ],
                         )),
@@ -379,11 +384,16 @@ class _AnnonScreenState extends State<AnnonScreen> {
               child: Column(
                 children: <Widget>[
                   Center(
-                    child: Text(
-                      'recapk',
-                      style: ConstFonts.titleFont
-                          .copyWith(color: Color(0xff0E0E0E)),
+                    child: Image(
+                      image: AssetImage('images/recapk.png'),
+                      width: 200,
+                      height: 50,
                     ),
+//                    child: Text(
+//                      'recapk',
+//                      style: ConstFonts.titleFont
+//                          .copyWith(color: Color(0xff0E0E0E)),
+//                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(right: 20, left: 20),
