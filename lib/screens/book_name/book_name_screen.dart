@@ -51,37 +51,89 @@ class _BookNameState extends State<BookName> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            color: ConstColors.backgroundColor,
-            // boxShadow: [
-            //   // BoxShadow(
-            //   //   offset: Offset(1, 1),
-            //   //   blurRadius: 10,
-            //   //   spreadRadius: 1,
-            //   //   color: ConstColors.boxShadowColor,
-            //   // ),
-            // ],
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12.0),
-              topRight: Radius.circular(12.0),
+        child: SingleChildScrollView(
+          child: Container(
+            width: width,
+            height: height - 28,
+            decoration: BoxDecoration(
+              color: ConstColors.backgroundColor,
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(1, 1),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                  color: ConstColors.boxShadowColor,
+                ),
+              ],
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20.0),
+                topRight: Radius.circular(20.0),
+              ),
             ),
-          ),
-          child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 6.0),
-                      child: Align(
+                Container(
+                  height: 55,
+                  margin: EdgeInsets.only(top: 10),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        left: 0,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            size: 30,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 6.0),
+                        child: Align(
                           alignment: Alignment.topCenter,
+                          child: Text('Recap content',
+                              style: ConstFonts.subTitleFont.copyWith(
+                                  color: Color.fromRGBO(0, 0, 0, 43),
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  height: height - 95,
+                  child: Stack(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 6.0, right: 15, left: 15),
                           child: Container(
-                            height: 500,
+                            height: height - 150,
                             // color: Colors.amberAccent,
                             child: TextField(
+                              textAlignVertical: TextAlignVertical.top,
+                              decoration: InputDecoration(
+                                filled: true,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Color.fromRGBO(45, 117, 226, 0.53),
+                                    // color: Color.fromRGBO(45, 117, 226, 0.53),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Color.fromRGBO(45, 117, 226, 0.53),
+                                    //color: Colors.white,
+                                  ),
+                                ),
+                              ),
+
                               textInputAction: TextInputAction.newline,
                               expands: true,
                               controller: _textEditingController,
@@ -93,53 +145,59 @@ class _BookNameState extends State<BookName> {
                               maxLines: null,
                               keyboardType: TextInputType.multiline,
                             ),
-                          )
-                          // Text('BookName',
-                          //     style: ConstFonts.subTitleFont.copyWith(
-                          //         color: Color.fromRGBO(0, 0, 0, 43),
-                          //         fontWeight: FontWeight.bold)),
-                          ),
-                    ),
-                    FlatButton(
-                      onPressed: () {
-//                        print(widget.recapName.substring(0, 1).toUpperCase());
-                        addData({
-                          'Book': widget.recapName,
-                          'bookKey':
-                              widget.recapName.substring(0, 1).toUpperCase(),
-                          'recap': _textEditingController.text.split('\n'),
-                        });
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return AnnonScreen();
-                            },
-                          ),
-                        );
-                      },
-                      child: Container(
-                        // color: Colors.blueAccent,
-                        child: Center(
-                          child: Text(
-                            'Let\'s go',
-                            style: TextStyle(fontSize: 12, color: Colors.white),
-                          ),
-                        ),
-                        width: 100,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: Colors.blueAccent,
-                          border: Border.all(
-                            color: Colors.blueAccent,
-                            width: 0.5,
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(6.0),
                           ),
                         ),
                       ),
-                    )
-                  ],
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: FlatButton(
+                          onPressed: () {
+//                        print(widget.recapName.substring(0, 1).toUpperCase() +
+//                            widget.recapName.substring(1));
+                            addData({
+                              'Book': widget.recapName
+                                      .substring(0, 1)
+                                      .toUpperCase() +
+                                  widget.recapName.substring(1),
+                              'bookKey': widget.recapName
+                                  .substring(0, 1)
+                                  .toUpperCase(),
+                              'recap': _textEditingController.text.split('\n'),
+                            });
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return AnnonScreen();
+                                },
+                              ),
+                            );
+                          },
+                          child: Container(
+                            // color: Colors.blueAccent,
+                            child: Center(
+                              child: Text(
+                                'Let\'s go',
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.white),
+                              ),
+                            ),
+                            width: 100,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              border: Border.all(
+                                color: Colors.blueAccent,
+                                width: 0.5,
+                              ),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(6.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),

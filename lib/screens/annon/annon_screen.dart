@@ -24,7 +24,193 @@ class AnnonScreen extends StatefulWidget {
 }
 
 class _AnnonScreenState extends State<AnnonScreen> {
+  String n = '';
   String recapName = '';
+  bool love = false;
+  var dataDisplay;
+  void toggleLove() {
+    setState(() {
+      love = !love;
+    });
+  }
+
+  Widget buildBottomSheetRecap(BuildContext context) {
+    return Container(
+      color: Color(0xff757575),
+      child: Container(
+        width: double.infinity,
+        height: 500,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(22.0),
+            topRight: Radius.circular(22.0),
+          ),
+        ),
+        child: Stack(children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      dataDisplay['Book'],
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Divider(),
+                  Text(
+                    n,
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 10,
+            right: 20,
+            child: Column(
+              children: <Widget>[
+                Divider(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          toggleLove();
+                        },
+                        child:
+                            Icon(love ? Icons.favorite : Icons.favorite_border),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          // color: Colors.blueAccent,
+                          child: Center(
+                            child: Text(
+                              'back',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white),
+                            ),
+                          ),
+                          width: 100,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            border: Border.all(
+                              color: Colors.blueAccent,
+                              width: 0.5,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(6.0),
+                            ),
+                          ),
+                        ),
+                      )
+                    ]),
+              ],
+            ),
+          )
+        ]),
+      ),
+    );
+  }
+
+  Widget buildResultCard(data, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        data['recap'].forEach((value) {
+          n += '\n' + value;
+        });
+        dataDisplay = data;
+        showModalBottomSheet(
+          context: context,
+          builder: buildBottomSheetRecap,
+          // isScrollControlled: true
+        );
+
+//        showDialog(
+//          context: context,
+//          builder: (context) {
+//            return AlertDialog(
+//              title: Text(
+//                data['Book'],
+//                // textAlign: TextAlign.center,
+//              ),
+//              content: Text(n),
+//              actions: <Widget>[
+//                InkWell(
+//                  onTap: () {
+//                    toggleLove();
+//                  },
+//                  child: Icon(love ? Icons.favorite : Icons.favorite_border),
+//                ),
+//                InkWell(
+//                  onTap: () {
+//                    Navigator.of(context).pop();
+//                  },
+//                  child: Container(
+//                    // color: Colors.blueAccent,
+//                    child: Center(
+//                      child: Text(
+//                        'back',
+//                        style: TextStyle(fontSize: 12, color: Colors.white),
+//                      ),
+//                    ),
+//                    width: 50,
+//                    height: 30,
+//                    decoration: BoxDecoration(
+//                      color: Colors.blueAccent,
+//                      border: Border.all(
+//                        color: Colors.blueAccent,
+//                        width: 0.5,
+//                      ),
+//                      borderRadius: BorderRadius.all(
+//                        Radius.circular(6.0),
+//                      ),
+//                    ),
+//                  ),
+//                )
+//              ],
+//            );
+//          },
+//        );
+        print(
+          data['recap'],
+        );
+      },
+      onLongPress: () {
+        /// [ فيما بعد يعني ممكن هنا نضيف ال detalies ]
+      },
+      child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          elevation: 2.0,
+          child: Container(
+              child: Center(
+                  child: Text(
+            data['Book'],
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+            ),
+          )))),
+    );
+  }
+
   Widget buildBottomSheetAdd(BuildContext context) {
     return Container(
       color: Color(0xff757575),
@@ -413,7 +599,7 @@ class _AnnonScreenState extends State<AnnonScreen> {
                           // controller: searchBox,
                           //onChanged: (){},
                           decoration: InputDecoration(
-                            hintText: 'Search Books,',
+                            hintText: 'Search Books,Recap, ...etc',
                             fillColor: Colors.white,
                             filled: true,
                             enabledBorder: OutlineInputBorder(
@@ -595,50 +781,6 @@ class _AnnonScreenState extends State<AnnonScreen> {
       ),
     );
   }
-}
-
-Widget buildResultCard(data, BuildContext context) {
-  String n = '';
-  return GestureDetector(
-    onTap: () {
-      data['recap'].forEach((value) {
-        n += '\n' + value;
-      });
-
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(
-              data['Book'],
-              // textAlign: TextAlign.center,
-            ),
-            content: Align(child: Text(n)),
-          );
-        },
-      );
-      print(
-        data['recap'],
-      );
-    },
-    onLongPress: () {
-      /// [ فيما بعد يعني ممكن هنا نضيف ال detalies ]
-    },
-    child: Card(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        elevation: 2.0,
-        child: Container(
-            child: Center(
-                child: Text(
-          data['Book'],
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20.0,
-          ),
-        )))),
-  );
 }
 
 // Align(
